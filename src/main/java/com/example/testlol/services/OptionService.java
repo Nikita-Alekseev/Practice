@@ -1,10 +1,14 @@
 package com.example.testlol.services;
+import com.example.testlol.dtos.OptionDto;
 import com.example.testlol.models.Option;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OptionService {
-    Option saveOption(Option option);
-    Option getOptionById(Long id);
-    List<Option> getAllOptions();
+    OptionDto register(OptionDto option);
+    Optional<OptionDto> getOptionById(Long id);
+    List<OptionDto> getAllOptions();
+    void delete (Long id);
+    OptionDto update (OptionDto option);
 }

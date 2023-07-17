@@ -5,6 +5,7 @@ import com.example.testlol.controllers.exception.CarNotFoundException;
 import com.example.testlol.dtos.CarDto;
 import com.example.testlol.models.Car;
 import com.example.testlol.repositories.CarRepository;
+import com.example.testlol.repositories.OptionRepository;
 import com.example.testlol.services.CarService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,17 @@ public class CarServiceImpl implements CarService {
     @Autowired
     private ModelMapper modelMapper;
 
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
+
     @Override
     public CarDto register(CarDto car) {
         Car b = modelMapper.map(car, Car.class);
         if (b.getId() == null || b.getId() == 0 || get(b.getId()).isEmpty()) {
             return modelMapper.map(carRepository.save(b), CarDto.class);
         } else {
-            throw new CarConflictException("A buyer with this id already exists");
+            throw new CarConflictException("A car with this id already exists");
         }
     }
 
