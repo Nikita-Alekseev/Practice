@@ -18,5 +18,7 @@ public interface CarService<ID> {
 
     CarDto update(CarDto car);
 
+    List<CarDto>findCarByModel(String model);
+
 }
 

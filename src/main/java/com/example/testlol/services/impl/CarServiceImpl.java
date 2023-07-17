@@ -52,11 +52,15 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDto update(CarDto buyer) {
-        if (carRepository.findById(buyer.getId()).isPresent()) {
-            return modelMapper.map(carRepository.save(modelMapper.map(buyer, Car.class)), CarDto.class);
+    public CarDto update(CarDto car) {
+        if (carRepository.findById(car.getId()).isPresent()) {
+            return modelMapper.map(carRepository.save(modelMapper.map(car, Car.class)), CarDto.class);
         } else {
-            throw new CarNotFoundException(buyer.getId());
+            throw new CarNotFoundException(car.getId());
         }
+    }
+    @Override
+    public List<CarDto> findCarByModel(String model) {
+        return carRepository.findAllByModel(model).stream().map((s) -> modelMapper.map(s, CarDto.class)).collect(Collectors.toList());
     }
 }

@@ -51,16 +51,5 @@ public class Car {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", year=" + year +
-                ", price=" + price +
-                '}';
-    }
 }
 

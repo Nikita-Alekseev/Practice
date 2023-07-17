@@ -26,11 +26,4 @@ public class Option {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Option{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

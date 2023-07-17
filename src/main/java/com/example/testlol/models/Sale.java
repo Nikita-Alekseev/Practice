@@ -52,13 +52,4 @@ public class Sale {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Sale{" +
-                "id=" + id +
-                ", car=" + car +
-                ", customer=" + customer +
-                ", date=" + date +
-                '}';
-    }
 }

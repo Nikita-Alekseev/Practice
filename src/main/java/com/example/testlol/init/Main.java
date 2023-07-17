@@ -31,10 +31,21 @@ public class Main implements CommandLineRunner {
     public void run(String... args){
         seedData();
     }
+    private void printAllCarsByModel(String model) {
+        carService
+                .findCarByModel(model)
+                .forEach(System.out::println);
+    }
 
     private void seedData() {
-        CarDto car = new CarDto(null, "Andrey", "Ivanov", 2020, 2020);
-        CustomerDto customer= new CustomerDto(null, "mobile", "jgefgeufgufg", "8349300484");
-        car = carService.register(car);
+        CarDto car1 = new CarDto(null, "BMW", "M5", 2020, 15000000);
+        CarDto car2 = new CarDto(null, "Mersedes", "S-Class", 2023, 23000000);
+        CustomerDto customer= new CustomerDto(null, "Ivanov Ivan", "Russia, Moscow", "8349300484");
+        car1 = carService.register(car1);
+        car2 = carService.register(car2);
+
+        printAllCarsByModel("M5");
+        printAllCarsByModel("S-Class");
+
     }
 }

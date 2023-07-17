@@ -19,4 +19,12 @@ public class OptionDto {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "OptionDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
