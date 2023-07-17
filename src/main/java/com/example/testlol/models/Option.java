@@ -9,9 +9,6 @@ public class Option {
     private Long id;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "car_id")
-    private Car car;
 
     public Long getId() {
         return id;

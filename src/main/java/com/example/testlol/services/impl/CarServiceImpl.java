@@ -1,32 +1,62 @@
 package com.example.testlol.services.impl;
 
+import com.example.testlol.controllers.exception.CarConflictException;
+import com.example.testlol.controllers.exception.CarNotFoundException;
+import com.example.testlol.dtos.CarDto;
 import com.example.testlol.models.Car;
 import com.example.testlol.repositories.CarRepository;
 import com.example.testlol.services.CarService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CarServiceImpl implements CarService {
-    private final CarRepository carRepository;
+    @Autowired
+    CarRepository carRepository;
 
-    public CarServiceImpl(CarRepository carRepository) {
-        this.carRepository = carRepository;
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Override
+    public CarDto register(CarDto car) {
+        Car b = modelMapper.map(car, Car.class);
+        if (b.getId() == null || b.getId() == 0 || get(b.getId()).isEmpty()) {
+            return modelMapper.map(carRepository.save(b), CarDto.class);
+        } else {
+            throw new CarConflictException("A buyer with this id already exists");
+        }
     }
 
     @Override
-    public Car saveCar(Car car) {
-        return carRepository.save(car);
+    public List<CarDto> getAll() {
+        return carRepository.findAll().stream().map((s) -> modelMapper.map(s, CarDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Car getCarById(Long id) {
-        return carRepository.findById(id).orElse(null);
+    public Optional<CarDto> get(Long id) {
+        return Optional.ofNullable(modelMapper.map(carRepository.findById(id), CarDto.class));
     }
 
     @Override
-    public List<Car> getAllCars() {
-        return carRepository.findAll();
+    public void delete(Long id) {
+        if (carRepository.findById(id).isPresent()) {
+            carRepository.deleteById(id);
+        } else {
+            throw new CarNotFoundException(id);
+        }
+    }
+
+    @Override
+    public CarDto update(CarDto buyer) {
+        if (carRepository.findById(buyer.getId()).isPresent()) {
+            return modelMapper.map(carRepository.save(modelMapper.map(buyer, Car.class)), CarDto.class);
+        } else {
+            throw new CarNotFoundException(buyer.getId());
+        }
     }
 }
