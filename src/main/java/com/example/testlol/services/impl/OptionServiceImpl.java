@@ -1,10 +1,8 @@
 package com.example.testlol.services.impl;
 
-import com.example.testlol.controllers.exception.CarConflictException;
-import com.example.testlol.controllers.exception.CarNotFoundException;
-import com.example.testlol.dtos.CustomerDto;
+import com.example.testlol.controllers.exception.OptionConflictException;
+import com.example.testlol.controllers.exception.OptionNotFoundException;
 import com.example.testlol.dtos.OptionDto;
-import com.example.testlol.models.Customer;
 import com.example.testlol.models.Option;
 import com.example.testlol.repositories.OptionRepository;
 import com.example.testlol.services.OptionService;
@@ -34,7 +32,7 @@ public class OptionServiceImpl implements OptionService {
         if (o.getId() == null || o.getId() == 0 || getOptionById(o.getId()).isEmpty()) {
             return modelMapper.map(optionRepository.save(o), OptionDto.class);
         } else {
-            throw new CarConflictException("A option with this id already exists");
+            throw new OptionConflictException("A option with this id already exists");
         }
     }
     @Override
@@ -42,7 +40,7 @@ public class OptionServiceImpl implements OptionService {
         if (optionRepository.findById(option.getId()).isPresent()) {
             return modelMapper.map(optionRepository.save(modelMapper.map(option, Option.class)), OptionDto.class);
         } else {
-            throw new CarNotFoundException(option.getId());
+            throw new OptionNotFoundException(option.getId());
         }
     }
 
@@ -61,7 +59,7 @@ public class OptionServiceImpl implements OptionService {
         if (optionRepository.findById(id).isPresent()) {
             optionRepository.deleteById(id);
         } else {
-            throw new CarNotFoundException(id);
+            throw new OptionNotFoundException(id);
         }
     }
 }

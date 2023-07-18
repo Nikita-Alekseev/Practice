@@ -12,6 +12,7 @@ public class CarOptionDto {
         this.car = car;
         this.option = option;
     }
+    public CarOptionDto() {};
 
     public Long getId() {
         return id;

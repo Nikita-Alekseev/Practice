@@ -1,7 +1,7 @@
 package com.example.testlol.services.impl;
 
-import com.example.testlol.controllers.exception.CarConflictException;
-import com.example.testlol.controllers.exception.CarNotFoundException;
+import com.example.testlol.controllers.exception.CustomerConflictException;
+import com.example.testlol.controllers.exception.CustomerNotFoundException;
 import com.example.testlol.dtos.CustomerDto;
 import com.example.testlol.models.Customer;
 import com.example.testlol.repositories.CustomerRepository;
@@ -26,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (c.getId() == null || c.getId() == 0 || getCustomerById(c.getId()).isEmpty()) {
             return modelMapper.map(customerRepository.save(c), CustomerDto.class);
         } else {
-            throw new CarConflictException("A customer with this id already exists");
+            throw new CustomerConflictException("A customer with this id already exists");
         }
     }
     public CustomerServiceImpl(CustomerRepository customerRepository) {
@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepository.findById(customer.getId()).isPresent()) {
             return modelMapper.map(customerRepository.save(modelMapper.map(customer, Customer.class)), CustomerDto.class);
         } else {
-            throw new CarNotFoundException(customer.getId());
+            throw new CustomerNotFoundException(customer.getId());
         }
     }
 
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerRepository.findById(id).isPresent()) {
             customerRepository.deleteById(id);
         } else {
-            throw new CarNotFoundException(id);
+            throw new CustomerNotFoundException(id);
         }
     }
 }

@@ -44,6 +44,7 @@ public class CustomerDto {
         this.address = address;
         this.phone = phone;
     }
+    public CustomerDto() {};
 
     @Override
     public String toString() {

@@ -10,7 +10,7 @@ public class SaleDto {
     private Long id;
     private CarDto car;
     private CustomerDto customer;
-    private Date date;
+    private int date;
 
     public Long getId() {
         return id;
@@ -36,11 +36,11 @@ public class SaleDto {
         this.customer = customer;
     }
 
-    public Date getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
@@ -53,4 +53,12 @@ public class SaleDto {
                 ", date=" + date +
                 '}';
     }
+
+    public SaleDto(Long id, CarDto car, CustomerDto customer, int date) {
+        this.id = id;
+        this.car = car;
+        this.customer = customer;
+        this.date = date;
+    }
+    public SaleDto() {};
 }

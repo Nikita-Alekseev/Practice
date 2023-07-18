@@ -10,4 +10,6 @@ public interface SaleService {
     List<SaleDto> getAllSales();
     void delete(Long id);
     SaleDto update(SaleDto sale);
+    List<SaleDto> findSaleByCarId(Long id);
+    List<SaleDto> findSaleByCustomerId(Long id);
 }

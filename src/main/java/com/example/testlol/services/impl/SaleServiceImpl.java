@@ -1,10 +1,8 @@
 package com.example.testlol.services.impl;
 
-import com.example.testlol.controllers.exception.CarConflictException;
-import com.example.testlol.controllers.exception.CarNotFoundException;
-import com.example.testlol.dtos.CustomerDto;
+import com.example.testlol.controllers.exception.SaleConflictException;
+import com.example.testlol.controllers.exception.SaleNotFoundException;
 import com.example.testlol.dtos.SaleDto;
-import com.example.testlol.models.Customer;
 import com.example.testlol.models.Sale;
 import com.example.testlol.repositories.SaleRepository;
 import com.example.testlol.services.SaleService;
@@ -32,7 +30,7 @@ public class SaleServiceImpl implements SaleService {
         if (s.getId() == null || s.getId() == 0 || getSaleById(s.getId()).isEmpty()) {
             return modelMapper.map(saleRepository.save(s), SaleDto.class);
         } else {
-            throw new CarConflictException("A sale with this id already exists");
+            throw new SaleConflictException("A sale with this id already exists");
         }
     }
 
@@ -41,7 +39,7 @@ public class SaleServiceImpl implements SaleService {
         if (saleRepository.findById(sale.getId()).isPresent()) {
             return modelMapper.map(saleRepository.save(modelMapper.map(sale, Sale.class)), SaleDto.class);
         } else {
-            throw new CarNotFoundException(sale.getId());
+            throw new SaleNotFoundException(sale.getId());
         }
     }
     @Override
@@ -59,7 +57,15 @@ public class SaleServiceImpl implements SaleService {
         if (saleRepository.findById(id).isPresent()) {
             saleRepository.deleteById(id);
         } else {
-            throw new CarNotFoundException(id);
+            throw new SaleNotFoundException(id);
         }
+    }
+    @Override
+    public List<SaleDto> findSaleByCarId(Long id) {
+        return saleRepository.findAllByCarId(id).stream().map((s) -> modelMapper.map(s, SaleDto.class)).collect(Collectors.toList());
+    }
+    @Override
+    public List<SaleDto> findSaleByCustomerId(Long id) {
+        return saleRepository.findAllByCustomerId(id).stream().map((s) -> modelMapper.map(s, SaleDto.class)).collect(Collectors.toList());
     }
 }

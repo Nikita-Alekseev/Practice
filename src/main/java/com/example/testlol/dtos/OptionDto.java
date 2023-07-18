@@ -27,4 +27,9 @@ public class OptionDto {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public OptionDto(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

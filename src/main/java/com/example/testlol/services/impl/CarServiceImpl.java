@@ -5,7 +5,6 @@ import com.example.testlol.controllers.exception.CarNotFoundException;
 import com.example.testlol.dtos.CarDto;
 import com.example.testlol.models.Car;
 import com.example.testlol.repositories.CarRepository;
-import com.example.testlol.repositories.OptionRepository;
 import com.example.testlol.services.CarService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
