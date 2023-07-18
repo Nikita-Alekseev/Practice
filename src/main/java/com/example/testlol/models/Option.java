@@ -1,11 +1,13 @@
 package com.example.testlol.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Long id;
     private String name;
 

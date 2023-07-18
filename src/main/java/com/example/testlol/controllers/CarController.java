@@ -12,7 +12,9 @@ public class CarController {
     @Autowired
     private CarService carService;
     @GetMapping()
-    Iterable<CarDto> all(){return carService.getAll();}
+    Iterable<CarDto> all(){
+        return carService.getAll();
+    }
     @GetMapping("/{id}")
     CarDto get(@PathVariable Long id){
         return carService.get(id).orElseThrow(() -> new CarNotFoundException(id));

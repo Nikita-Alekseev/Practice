@@ -5,9 +5,9 @@ public class CarDto {
     private String brand;
     private String model;
     private int year;
-    private double price;
+    private int price;
 
-    public CarDto(Long id, String brand, String model, int year, double price) {
+    public CarDto(Long id, String brand, String model, int year, int price) {
         this.id = id;
         this.brand = brand;
         this.model = model;
@@ -48,11 +48,11 @@ public class CarDto {
         this.year = year;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

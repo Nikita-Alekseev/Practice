@@ -32,4 +32,5 @@ public class OptionDto {
         this.id = id;
         this.name = name;
     }
+    public OptionDto() {};
 }

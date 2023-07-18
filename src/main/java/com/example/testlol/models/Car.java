@@ -1,16 +1,18 @@
 package com.example.testlol.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Long id;
     private String brand;
     private String model;
     private int year;
-    private double price;
+    private int price;
 
     public Long getId() {
         return id;
@@ -44,11 +46,11 @@ public class Car {
         this.year = year;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

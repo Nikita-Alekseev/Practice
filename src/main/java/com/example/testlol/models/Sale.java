@@ -1,6 +1,7 @@
 package com.example.testlol.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.sql.Date;
 
@@ -8,6 +9,7 @@ import java.sql.Date;
 public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Long id;
 
     @ManyToOne
@@ -18,7 +20,7 @@ public class Sale {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    private Date date;
+    private String date;
 
     public Long getId() {
         return id;
@@ -44,11 +46,11 @@ public class Sale {
         this.customer = customer;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

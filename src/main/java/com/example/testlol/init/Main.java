@@ -2,6 +2,7 @@ package com.example.testlol.init;
 
 import com.example.testlol.dtos.CarDto;
 import com.example.testlol.dtos.CustomerDto;
+import com.example.testlol.dtos.OptionDto;
 import com.example.testlol.dtos.SaleDto;
 import com.example.testlol.services.CarService;
 import com.example.testlol.services.CustomerService;
@@ -45,6 +46,11 @@ public class Main implements CommandLineRunner {
                 .findSaleByCustomerId(id)
                 .forEach(System.out::println);
     }
+    private void printSalesByCarBrandAndYear(String brand, String year) {
+        saleService
+                .findSalesByCarBrandAndYear(brand, year)
+                .forEach(System.out::println);
+    }
 
     private void seedData() {
         CarDto car1 = new CarDto(null, "BMW", "M5", 2020, 15000000);
@@ -53,16 +59,19 @@ public class Main implements CommandLineRunner {
         car1 = carService.register(car1);
         car2 = carService.register(car2);
         customer = customerService.register(customer);
-        SaleDto sale = new SaleDto(null, car1, customer, 2002);
-        SaleDto sale2 = new SaleDto(null, car2, customer, 2020);
+        SaleDto sale = new SaleDto(null, car1, customer, "2002");
+        SaleDto sale2 = new SaleDto(null, car2, customer, "2020");
         sale = saleService.register(sale);
         sale2 = saleService.register(sale2);
-
+        OptionDto option = new OptionDto(null, "Проекция на стекло");
+        OptionDto option2 = new OptionDto(null, "камера на 350 градусов");
+        option = optionService.register(option);
+        option2 = optionService.register(option2);
 
         printAllCarsByModel("M5");
         printAllCarsByModel("S-Class");
         printAllSaleByCustomerId(1);
         printAllSaleByCarID(1);
-
+        printSalesByCarBrandAndYear("BMW", "2020");
     }
 }
