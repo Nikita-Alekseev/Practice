@@ -1,25 +1,18 @@
 package com.example.testlol.models;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
+
+import java.util.List;
 
 @Entity
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Long id;
+public class Customer extends Base{
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
+    private List<Sale> sales;
     private String name;
     private String address;
     private String phone;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    protected Customer() {};
 
     public String getName() {
         return name;
@@ -44,5 +37,4 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
 }

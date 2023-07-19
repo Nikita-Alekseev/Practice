@@ -12,4 +12,5 @@ public interface SaleService {
     SaleDto update(SaleDto sale);
     List<SaleDto> findSaleByCarId(Long id);
     List<SaleDto> findSaleByCustomerId(Long id);
+    List<SaleDto> findSalesByCarBrandAndYear(String brand, String date);
 }

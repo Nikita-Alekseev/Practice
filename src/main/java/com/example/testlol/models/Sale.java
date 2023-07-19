@@ -1,16 +1,12 @@
 package com.example.testlol.models;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
+
 
 import java.sql.Date;
 
 @Entity
-public class Sale {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Long id;
+public class Sale extends Base {
 
     @ManyToOne
     @JoinColumn(name = "car_id")
@@ -22,13 +18,7 @@ public class Sale {
 
     private String date;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    protected Sale() {};
 
     public Car getCar() {
         return car;
@@ -53,5 +43,4 @@ public class Sale {
     public void setDate(String date) {
         this.date = date;
     }
-
 }

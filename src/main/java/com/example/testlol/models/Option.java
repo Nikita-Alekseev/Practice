@@ -4,21 +4,10 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
 @Entity
-public class Option {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Long id;
+public class Option extends Base{
     private String name;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    protected Option() {};
 
     public String getName() {
         return name;
@@ -27,5 +16,4 @@ public class Option {
     public void setName(String name) {
         this.name = name;
     }
-
 }

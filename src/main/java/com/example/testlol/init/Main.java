@@ -68,10 +68,10 @@ public class Main implements CommandLineRunner {
         option = optionService.register(option);
         option2 = optionService.register(option2);
 
-        printAllCarsByModel("M5");
-        printAllCarsByModel("S-Class");
-        printAllSaleByCustomerId(1);
-        printAllSaleByCarID(1);
-        printSalesByCarBrandAndYear("BMW", "2020");
+        //printAllCarsByModel("M5");
+        //printAllCarsByModel("S-Class");
+        //printAllSaleByCustomerId(1);
+        //printAllSaleByCarID(1);
+        printSalesByCarBrandAndYear("Mersedes", "2023");
     }
 }

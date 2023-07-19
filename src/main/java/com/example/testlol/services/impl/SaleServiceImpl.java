@@ -68,4 +68,8 @@ public class SaleServiceImpl implements SaleService {
     public List<SaleDto> findSaleByCustomerId(Long id) {
         return saleRepository.findAllByCustomerId(id).stream().map((s) -> modelMapper.map(s, SaleDto.class)).collect(Collectors.toList());
     }
+    @Override
+    public List<SaleDto> findSalesByCarBrandAndYear(String brand, String year) {
+        return saleRepository.findSalesByCarBrandAndYear(brand, year).stream().map((s) -> modelMapper.map(s, SaleDto.class)).collect(Collectors.toList());
+    }
 }

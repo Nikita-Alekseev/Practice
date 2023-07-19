@@ -1,25 +1,27 @@
 package com.example.testlol.models;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
+
+import java.util.List;
 
 @Entity
-public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Long id;
+public class Car extends Base{
+    @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE)
+    private List<Sale> sales;
+
     private String brand;
     private String model;
     private int year;
     private int price;
 
-    public Long getId() {
-        return id;
+    protected Car() {};
+
+    public List<Sale> getSales() {
+        return sales;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
     }
 
     public String getBrand() {
