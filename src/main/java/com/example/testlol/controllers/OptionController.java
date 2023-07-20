@@ -14,7 +14,7 @@ public class OptionController {
     @GetMapping()
     Iterable<OptionDto> all(){return optionService.getAllOptions();}
     @GetMapping("/{id}")
-    OptionDto get(Long id){
+    OptionDto get(@PathVariable Long id){
         return optionService.getOptionById(id).orElseThrow(() -> new OptionNotFoundException(id));
     }
     @PostMapping()

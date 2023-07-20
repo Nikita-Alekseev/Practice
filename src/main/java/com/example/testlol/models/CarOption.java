@@ -4,12 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "CarOption")
-public class CarOption {
-    @Id
+public class CarOption extends Base{
     @ManyToOne
     @JoinColumn(name = "option_id")
     private Option option;
-    @Id
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;

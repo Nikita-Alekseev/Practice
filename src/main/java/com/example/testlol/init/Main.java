@@ -1,13 +1,11 @@
 package com.example.testlol.init;
 
-import com.example.testlol.dtos.CarDto;
-import com.example.testlol.dtos.CustomerDto;
-import com.example.testlol.dtos.OptionDto;
-import com.example.testlol.dtos.SaleDto;
+import com.example.testlol.dtos.*;
 import com.example.testlol.services.CarService;
 import com.example.testlol.services.CustomerService;
 import com.example.testlol.services.OptionService;
 import com.example.testlol.services.SaleService;
+import com.example.testlol.services.CarOptionService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +24,8 @@ public class Main implements CommandLineRunner {
     private OptionService optionService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private CarOptionService carOptionService;
 
     @Override
     public void run(String... args){
@@ -64,9 +64,19 @@ public class Main implements CommandLineRunner {
         sale = saleService.register(sale);
         sale2 = saleService.register(sale2);
         OptionDto option = new OptionDto(null, "Проекция на стекло");
-        OptionDto option2 = new OptionDto(null, "камера на 350 градусов");
+        OptionDto option2 = new OptionDto(null, "камера на 360 градусов");
+        OptionDto option3 = new OptionDto(null, "Подогрев лобового стекла");
+        OptionDto option4 = new OptionDto(null, "Подогрев задних сидений");
         option = optionService.register(option);
         option2 = optionService.register(option2);
+        option3 = optionService.register(option4);
+        option4 = optionService.register(option4);
+        CarOptionDto co1 = new CarOptionDto(null, car2, option);
+        CarOptionDto co2 = new CarOptionDto(null, car2, option2);
+        CarOptionDto co3 = new CarOptionDto(null, car1, option);
+        co1 = carOptionService.register(co1);
+        co2 = carOptionService.register(co2);
+        co3 = carOptionService.register(co3);
 
         //printAllCarsByModel("M5");
         //printAllCarsByModel("S-Class");

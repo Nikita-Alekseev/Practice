@@ -1,7 +1,6 @@
 package com.example.testlol.services;
 
 import com.example.testlol.dtos.CarDto;
-import com.example.testlol.models.Car;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +18,5 @@ public interface CarService {
     CarDto update(CarDto car);
 
     List<CarDto>findCarByModel(String model);
-
 }
 

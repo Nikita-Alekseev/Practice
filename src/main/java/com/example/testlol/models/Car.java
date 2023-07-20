@@ -9,6 +9,9 @@ public class Car extends Base{
     @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE)
     private List<Sale> sales;
 
+    @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE)
+    private List<CarOption> carOptions;
+
     private String brand;
     private String model;
     private int year;
