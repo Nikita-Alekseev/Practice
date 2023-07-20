@@ -1,11 +1,5 @@
 package com.example.testlol.dtos;
 
-import java.sql.Date;
-import com.example.testlol.dtos.CarDto;
-import com.example.testlol.dtos.CustomerDto;
-import com.example.testlol.models.Car;
-import com.example.testlol.models.Customer;
-
 public class SaleDto {
     private Long id;
     private CarDto car;
@@ -44,6 +38,8 @@ public class SaleDto {
         this.date = date;
     }
 
+    protected SaleDto() {};
+
     @Override
     public String toString() {
         return "SaleDto{" +
@@ -60,5 +56,4 @@ public class SaleDto {
         this.customer = customer;
         this.date = date;
     }
-    public SaleDto() {};
 }

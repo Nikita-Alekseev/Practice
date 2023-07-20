@@ -14,7 +14,7 @@ public class CarDto {
         this.year = year;
         this.price = price;
     }
-    public CarDto() {};
+    protected CarDto() {};
 
     public Long getId() {
         return id;

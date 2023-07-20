@@ -20,7 +20,7 @@ public class SaleController {
         return saleService.getSaleById(id).orElseThrow(() -> new SaleNotFoundException(id));
     }
     @PostMapping()
-    SaleDto createSale(SaleDto sale){
+    SaleDto createSale(@RequestBody SaleDto sale){
         return saleService.register(sale);
     }
     @DeleteMapping("/{id}")
